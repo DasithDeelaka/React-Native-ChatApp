@@ -1,15 +1,17 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { ActivityIndicator, StyleSheet, Text, View, Image } from 'react-native'
 
 // Loading indicator view
-export const Details = () => {
-    return(
-        <View style={styles.loadingView} >
-            <Text style={styles.loadingText} >Details Screen</Text>
-            <Image style={styles.stretch} source={require('../assets/splash.png')} />
-        </View>
-    );
-};
+export class Details extends Component {
+    render () {
+        return(
+            <View style={styles.loadingView} >
+                <Text style={styles.loadingText} >Details Screen</Text>
+                <Image style={styles.stretch} source={require('../assets/splash.png')} />
+            </View>
+        );
+    }
+}
 
 // Styles
 const styles = StyleSheet.create({
