@@ -12,7 +12,7 @@ import { Search } from './Search';
 import { Search2 } from './Search2';
 import { Profile } from './Profile';
 import { SignIn } from './SignIn';
-import { CreateAccount } from './CreateAccount';
+// import { CreateAccount } from './CreateAccount';
 
 const AuthStack = createStackNavigator();
 const AuthStackScreen = () => (
@@ -22,11 +22,11 @@ const AuthStackScreen = () => (
 			component={SignIn}
 			options={{ title: "Sign In" }}
 		/>
-		<AuthStack.Screen
+		{/* <AuthStack.Screen
 			name="CreateAccount"
 			component={CreateAccount}
 			options={{ title: "Create Account" }}
-		/>
+		/> */}
 	</AuthStack.Navigator>
 );
 
@@ -70,7 +70,7 @@ const TabsScreen = () => (
 
 const Drawer = createDrawerNavigator();
 const DrawerScreen = () => (
-	<Drawer.Navigator initialRouteName="Profile">
+	<Drawer.Navigator initialRouteName="Home">
 		<Drawer.Screen name="Home" component={TabsScreen} />
 		<Drawer.Screen name="Profile" component={ProfileStackScreen} />
 	</Drawer.Navigator>

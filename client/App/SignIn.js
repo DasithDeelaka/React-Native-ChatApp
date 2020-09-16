@@ -14,10 +14,10 @@ export const SignIn = ({ navigation }) => {
 		<ScreenContainer>
 			<Text>Sign In Screen</Text>
 			<Button title="Sign In" onPress={() => signIn()} />
-			<Button
+			{/* <Button
 				title="Create Account"
 				onPress={() => navigation.push("CreateAccount")}
-			/>
+			/> */}
 		</ScreenContainer>
 	);
 };
