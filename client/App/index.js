@@ -5,7 +5,14 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 
 import { AuthContext } from "./context";
-import { SignIn, CreateAccount, Search, Home, Details, Search2, Profile, Splash } from "./Screens";
+import { Splash } from "./Splash";
+import { Home } from './Home';
+import { Details } from './Details';
+import { Search } from './Search';
+import { Search2 } from './Search2';
+import { Profile } from './Profile';
+import { SignIn } from './SignIn';
+import { CreateAccount } from './CreateAccount';
 
 const AuthStack = createStackNavigator();
 const AuthStackScreen = () => (
