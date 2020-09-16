@@ -123,7 +123,7 @@ export default () => {
 	React.useEffect(() => {
 		setTimeout(() => {
 		setIsLoading(false);
-		}, 1000);
+		}, 1500);
 	}, []);
 
 	if (isLoading) {
