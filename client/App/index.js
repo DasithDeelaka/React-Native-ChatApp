@@ -7,12 +7,12 @@ import { createDrawerNavigator } from "@react-navigation/drawer";
 import { AuthContext } from "./context";
 import { Splash } from "./Splash";
 import { Home } from './Home';
-import { Details } from './Details';
-import { Search } from './Search';
-import { Search2 } from './Search2';
+import { Chat } from './Chat';
 import { Profile } from './Profile';
 import { SignIn } from './SignIn';
 // import { CreateAccount } from './CreateAccount';
+// import { Details } from './Details';
+// import { Search } from './Search';
 
 const AuthStack = createStackNavigator();
 const AuthStackScreen = () => (
@@ -32,26 +32,26 @@ const AuthStackScreen = () => (
 
 const Tabs = createBottomTabNavigator();
 const HomeStack = createStackNavigator();
-const SearchStack = createStackNavigator();
+const ChatStack = createStackNavigator();
 
 const HomeStackScreen = () => (
 	<HomeStack.Navigator>
 		<HomeStack.Screen name="Home" component={Home} />
-		<HomeStack.Screen
+		{/* <HomeStack.Screen
 			name="Details"
 			component={Details}
 			options={({ route }) => ({
 				title: route.params.name
 			})}
-		/>
+		/> */}
 	</HomeStack.Navigator>
 );
 
-const SearchStackScreen = () => (
-	<SearchStack.Navigator>
-		<SearchStack.Screen name="Search" component={Search} />
-		<SearchStack.Screen name="Search2" component={Search2} />
-	</SearchStack.Navigator>
+const ChatStackScreen = () => (
+	<ChatStack.Navigator>
+		<ChatStack.Screen name="Chat" component={Chat} />
+		{/* <SearchStack.Screen name="Search" component={Search} /> */}
+	</ChatStack.Navigator>
 );
 
 const ProfileStack = createStackNavigator();
@@ -64,7 +64,7 @@ const ProfileStackScreen = () => (
 const TabsScreen = () => (
 	<Tabs.Navigator>
 		<Tabs.Screen name="Home" component={HomeStackScreen} />
-		<Tabs.Screen name="Search" component={SearchStackScreen} />
+		<Tabs.Screen name="Chat" component={ChatStackScreen} />
 	</Tabs.Navigator>
 );
 

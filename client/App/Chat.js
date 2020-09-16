@@ -2,23 +2,21 @@ import React from "react";
 import { View, Text, StyleSheet, Button } from "react-native";
 
 const ScreenContainer = ({ children }) => (
-    <View style={styles.container}>{children}</View>
+  	<View style={styles.container}>{children}</View>
 );
 
-export const Home = ({ navigation }) => (
+export const Chat = ({ navigation }) => (
 	<ScreenContainer>
-		<Text>Home Screen</Text>
-		{/* <Button
-			title="React Native by Example"
-			onPress={() =>
-				navigation.push("Details", { name: "React Native by Example " })
-			}
-		/>
+		<Text>Chat Screen</Text>
+		{/* <Button title="Search" onPress={() => navigation.push("Search")} />
 		<Button
 			title="React Native School"
-			onPress={() =>
-				navigation.push("Details", { name: "React Native School" })
-			}
+			onPress={() => {
+				navigation.navigate("Home", {
+				screen: "Details",
+				params: { name: "React Native School" }
+				});
+			}}
 		/> */}
 		<Button title="Drawer" onPress={() => navigation.toggleDrawer()} />
 	</ScreenContainer>
