@@ -3,6 +3,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createDrawerNavigator } from "@react-navigation/drawer";
+import { Icon } from 'react-native-elements';
 
 import { AuthContext } from "./context";
 import { Splash } from "./Splash";
@@ -62,7 +63,25 @@ const ProfileStackScreen = () => (
 );
 
 const TabsScreen = () => (
-	<Tabs.Navigator>
+	<Tabs.Navigator
+		screenOptions={({ route }) => ({
+		tabBarIcon: ({ focused, color, size }) => {
+			if (route.name === 'Home') {
+				return (
+					<Icon name='home' type='font-awesome' size={24} />
+				);
+			} else if (route.name === 'Chat') {
+				return (
+					<Icon name='comments' type='font-awesome' size={24} />
+				);
+			}
+		},
+		})}
+		tabBarOptions={{
+			activeTintColor: '#2979FF',
+			inactiveTintColor: 'gray',
+		}}
+	>
 		<Tabs.Screen name="Home" component={HomeStackScreen} />
 		<Tabs.Screen name="Chat" component={ChatStackScreen} />
 	</Tabs.Navigator>
