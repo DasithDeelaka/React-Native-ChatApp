@@ -100,17 +100,15 @@ const ProfileStackScreen = ({ navigation }) => (
 const TabsScreen = () => (
 	<Tabs.Navigator initialRouteName="Home"
 		screenOptions={({ route }) => ({
-		tabBarIcon: ({ focused, color, size }) => {
-			if (route.name === 'Home') {
-				return (
-					<Icon name='home' type='font-awesome' size={24} />
-				);
-			} else if (route.name === 'Chat') {
-				return (
-					<Icon name='comments' type='font-awesome' size={24} />
-				);
+			tabBarIcon: ({ focused, color, size }) => {
+				let iconName;
+				if (route.name === 'Home') {
+					iconName = focused ? 'home' : 'home';
+				} else if (route.name === 'Chat') {
+					iconName = focused ? 'comments' : 'comments';
+				}
+				return <Icon name={iconName} size={size} color={color} type='font-awesome' />;
 			}
-		},
 		})}
 		tabBarOptions={{
 			activeTintColor: '#2979FF',
