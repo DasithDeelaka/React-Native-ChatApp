@@ -125,11 +125,31 @@ const DrawerScreen = () => (
 	<Drawer.Navigator initialRouteName="Home" drawerContent={props => <CustomDrawerContent {...props} />}>
 		<Drawer.Screen name="Home"
 			component={TabsScreen}
-			options={{ drawerIcon: config => <Icon size={24} name={'home'} type='font-awesome' /> }}
+			options={ () => ({
+				drawerIcon: ({ focused, color, size }) => {
+					let iconName;
+					iconName = focused ? 'home' : 'home';
+					return <Icon name={iconName} size={size} color={color} type='font-awesome' />;
+				}
+			})}
+			tabBarOptions={{
+				activeTintColor: '#2979FF',
+				inactiveTintColor: 'gray',
+			}}
 		/>
 		<Drawer.Screen name="Profile"
 			component={ProfileStackScreen}
-			options={{ drawerIcon: config => <Icon size={24} name={'user'} type='font-awesome' /> }}
+			options={ () => ({
+				drawerIcon: ({ focused, color, size }) => {
+					let iconName;
+					iconName = focused ? 'user' : 'user';
+					return <Icon name={iconName} size={size} color={color} type='font-awesome' />;
+				}
+			})}
+			tabBarOptions={{
+				activeTintColor: '#2979FF',
+				inactiveTintColor: 'gray',
+			}}
 		/>
 	</Drawer.Navigator>
 );
