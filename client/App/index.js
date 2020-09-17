@@ -90,8 +90,14 @@ const TabsScreen = () => (
 const Drawer = createDrawerNavigator();
 const DrawerScreen = () => (
 	<Drawer.Navigator initialRouteName="Home">
-		<Drawer.Screen name="Home" component={TabsScreen} />
-		<Drawer.Screen name="Profile" component={ProfileStackScreen} />
+		<Drawer.Screen name="Home"
+			component={TabsScreen}
+			options={{ drawerIcon: config => <Icon size={24} name={'home'} type='font-awesome' /> }}
+		/>
+		<Drawer.Screen name="Profile"
+			component={ProfileStackScreen}
+			options={{ drawerIcon: config => <Icon size={24} name={'user'} type='font-awesome' /> }}
+		/>
 	</Drawer.Navigator>
 );
 
