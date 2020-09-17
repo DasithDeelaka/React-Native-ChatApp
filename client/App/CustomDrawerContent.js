@@ -1,8 +1,11 @@
 import React from "react";
-import { View, Text, Image, StyleSheet } from 'react-native';
+import { View, Text, Image, StyleSheet, Button } from 'react-native';
 import { DrawerContentScrollView, DrawerItemList } from "@react-navigation/drawer";
 
+import { AuthContext } from "./context";
+
 export function CustomDrawerContent(props) {
+    const { signOut } = React.useContext(AuthContext);
 	return (
 		<DrawerContentScrollView {...props}>
 			<View style={styles.drawerHeader}>
@@ -14,6 +17,7 @@ export function CustomDrawerContent(props) {
                 </View>
             </View>
 			<DrawerItemList {...props} />
+            <Button title="Sign Out" color="red" onPress={() => signOut()} />
 		</DrawerContentScrollView>
 	);
 }

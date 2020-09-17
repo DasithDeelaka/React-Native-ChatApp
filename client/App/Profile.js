@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet, Button, Image } from "react-native";
+import { View, Text, StyleSheet, Button } from "react-native";
 
 import { AuthContext } from "./context";
 
@@ -13,7 +13,7 @@ export const Profile = ({ navigation }) => {
 	return (
 		<ScreenContainer>
 			<Text>Profile Screen</Text>
-			<Button title="Sign Out" onPress={() => signOut()} />
+			<Button title="Sign Out" color="red" onPress={() => signOut()} />
 		</ScreenContainer>
 	);
 };
