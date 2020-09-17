@@ -11,6 +11,7 @@ import { Home } from './Home';
 import { Chat } from './Chat';
 import { Profile } from './Profile';
 import { SignIn } from './SignIn';
+import { CustomDrawerContent } from './CustomDrawerContent';
 // import { CreateAccount } from './CreateAccount';
 // import { Details } from './Details';
 // import { Search } from './Search';
@@ -123,7 +124,7 @@ const TabsScreen = () => (
 
 const Drawer = createDrawerNavigator();
 const DrawerScreen = () => (
-	<Drawer.Navigator initialRouteName="Home">
+	<Drawer.Navigator initialRouteName="Home" drawerContent={props => <CustomDrawerContent {...props} />}>
 		<Drawer.Screen name="Home"
 			component={TabsScreen}
 			options={{ drawerIcon: config => <Icon size={24} name={'home'} type='font-awesome' /> }}
