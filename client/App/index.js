@@ -132,10 +132,6 @@ const DrawerScreen = () => (
 					return <Icon name={iconName} size={size} color={color} type='font-awesome' />;
 				}
 			})}
-			tabBarOptions={{
-				activeTintColor: '#2979FF',
-				inactiveTintColor: 'gray',
-			}}
 		/>
 		<Drawer.Screen name="Profile"
 			component={ProfileStackScreen}
@@ -146,10 +142,6 @@ const DrawerScreen = () => (
 					return <Icon name={iconName} size={size} color={color} type='font-awesome' />;
 				}
 			})}
-			tabBarOptions={{
-				activeTintColor: '#2979FF',
-				inactiveTintColor: 'gray',
-			}}
 		/>
 	</Drawer.Navigator>
 );
