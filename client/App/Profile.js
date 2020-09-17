@@ -13,7 +13,6 @@ export const Profile = ({ navigation }) => {
 	return (
 		<ScreenContainer>
 			<Text>Profile Screen</Text>
-			<Button title="Drawer" onPress={() => navigation.toggleDrawer()} />
 			<Button title="Sign Out" onPress={() => signOut()} />
 		</ScreenContainer>
 	);

@@ -35,9 +35,21 @@ const Tabs = createBottomTabNavigator();
 const HomeStack = createStackNavigator();
 const ChatStack = createStackNavigator();
 
-const HomeStackScreen = () => (
+const HomeStackScreen = ({ navigation }) => (
 	<HomeStack.Navigator>
-		<HomeStack.Screen name="Home" component={Home} />
+		<HomeStack.Screen
+			name="Home"
+			component={Home}
+			options={{ headerLeft: () => (
+				<Icon
+					name="menu"
+					size={24}
+					color= 'grey'
+					onPress={ () => navigation.toggleDrawer() }
+					style={{ marginLeft: 15 }}
+				/>
+            ) }}
+		/>
 		{/* <HomeStack.Screen
 			name="Details"
 			component={Details}
@@ -48,22 +60,44 @@ const HomeStackScreen = () => (
 	</HomeStack.Navigator>
 );
 
-const ChatStackScreen = () => (
+const ChatStackScreen = ({ navigation }) => (
 	<ChatStack.Navigator>
-		<ChatStack.Screen name="Chat" component={Chat} />
+		<ChatStack.Screen name="Chat"
+			component={Chat}
+			options={{ headerLeft: () => (
+				<Icon
+					name="menu"
+					size={24}
+					color= 'grey'
+					onPress={ () => navigation.toggleDrawer() }
+					style={{ marginLeft: 15 }}
+				/>
+            ) }}
+		/>
 		{/* <SearchStack.Screen name="Search" component={Search} /> */}
 	</ChatStack.Navigator>
 );
 
 const ProfileStack = createStackNavigator();
-const ProfileStackScreen = () => (
+const ProfileStackScreen = ({ navigation }) => (
 	<ProfileStack.Navigator>
-		<ProfileStack.Screen name="Profile" component={Profile} />
+		<ProfileStack.Screen name="Profile"
+			component={Profile}
+			options={{ headerLeft: () => (
+				<Icon
+					name="menu"
+					size={24}
+					color= 'grey'
+					onPress={ () => navigation.toggleDrawer() }
+					style={{ marginLeft: 15 }}
+				/>
+            ) }}
+		/>
 	</ProfileStack.Navigator>
 );
 
 const TabsScreen = () => (
-	<Tabs.Navigator
+	<Tabs.Navigator initialRouteName="Home"
 		screenOptions={({ route }) => ({
 		tabBarIcon: ({ focused, color, size }) => {
 			if (route.name === 'Home') {

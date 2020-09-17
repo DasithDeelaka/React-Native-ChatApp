@@ -20,7 +20,6 @@ export const Home = ({ navigation }) => (
 				navigation.push("Details", { name: "React Native School" })
 			}
 		/> */}
-		<Button title="Drawer" onPress={() => navigation.toggleDrawer()} />
 	</ScreenContainer>
 );
 

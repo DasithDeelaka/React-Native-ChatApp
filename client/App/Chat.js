@@ -18,7 +18,6 @@ export const Chat = ({ navigation }) => (
 				});
 			}}
 		/> */}
-		<Button title="Drawer" onPress={() => navigation.toggleDrawer()} />
 	</ScreenContainer>
 );
 
