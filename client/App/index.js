@@ -16,6 +16,7 @@ import { CustomDrawerContent } from './CustomDrawerContent';
 // import { Details } from './Details';
 // import { Search } from './Search';
 
+// Stack Navigation from SignIn screen
 const AuthStack = createStackNavigator();
 const AuthStackScreen = () => (
 	<AuthStack.Navigator>
@@ -32,10 +33,8 @@ const AuthStackScreen = () => (
 	</AuthStack.Navigator>
 );
 
-const Tabs = createBottomTabNavigator();
+// Stack Navigation from Home screen
 const HomeStack = createStackNavigator();
-const ChatStack = createStackNavigator();
-
 const HomeStackScreen = ({ navigation }) => (
 	<HomeStack.Navigator>
 		<HomeStack.Screen
@@ -61,6 +60,8 @@ const HomeStackScreen = ({ navigation }) => (
 	</HomeStack.Navigator>
 );
 
+// Stack Navigation from Chat screen
+const ChatStack = createStackNavigator();
 const ChatStackScreen = ({ navigation }) => (
 	<ChatStack.Navigator>
 		<ChatStack.Screen name="Chat"
@@ -79,6 +80,7 @@ const ChatStackScreen = ({ navigation }) => (
 	</ChatStack.Navigator>
 );
 
+// Stack Navigation from Profile screen
 const ProfileStack = createStackNavigator();
 const ProfileStackScreen = ({ navigation }) => (
 	<ProfileStack.Navigator>
@@ -97,6 +99,8 @@ const ProfileStackScreen = ({ navigation }) => (
 	</ProfileStack.Navigator>
 );
 
+// Tab Navigation for Home & Chat screens
+const Tabs = createBottomTabNavigator();
 const TabsScreen = () => (
 	<Tabs.Navigator initialRouteName="Home"
 		screenOptions={({ route }) => ({
@@ -120,6 +124,7 @@ const TabsScreen = () => (
 	</Tabs.Navigator>
 );
 
+// Drawer Navigation bar
 const Drawer = createDrawerNavigator();
 const DrawerScreen = () => (
 	<Drawer.Navigator initialRouteName="Home" drawerContent={props => <CustomDrawerContent {...props} />}>
@@ -146,6 +151,7 @@ const DrawerScreen = () => (
 	</Drawer.Navigator>
 );
 
+// Render Authentication & Drawer at the initial app deployment
 const RootStack = createStackNavigator();
 const RootStackScreen = ({ userToken }) => (
 	<RootStack.Navigator headerMode="none">
@@ -173,6 +179,7 @@ export default () => {
 	const [isLoading, setIsLoading] = React.useState(true);
 	const [userToken, setUserToken] = React.useState(null);
 
+	// Authentication process
 	const authContext = React.useMemo(() => {
 		return {
 		signIn: () => {
@@ -190,6 +197,7 @@ export default () => {
 		};
 	}, []);
 
+	// Splash screen
 	React.useEffect(() => {
 		setTimeout(() => {
 		setIsLoading(false);
@@ -200,6 +208,7 @@ export default () => {
 		return <Splash />;
 	}
 
+	// Render initial route deployment
 	return (
 		<AuthContext.Provider value={authContext}>
 			<NavigationContainer>
