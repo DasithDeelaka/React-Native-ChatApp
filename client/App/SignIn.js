@@ -2,13 +2,25 @@ import React from "react";
 import { View, Text, StyleSheet, Button, Image } from "react-native";
 
 import { AuthContext } from "./context";
+import { Loading } from './Loading';
 
 const ScreenContainer = ({ children }) => (
   	<View style={styles.container}>{children}</View>
 );
 
 export const SignIn = ({ navigation }) => {
-  	const { signIn } = React.useContext(AuthContext);
+	const { signIn } = React.useContext(AuthContext);
+	const [isLoading, setIsLoading] = React.useState(true);
+
+	React.useEffect(() => {
+		setTimeout(() => {
+		setIsLoading(false);
+		}, 1500);
+	}, []);
+
+	if (isLoading) {
+		return <Loading />;
+	}
 
 	return (
 		<ScreenContainer>
