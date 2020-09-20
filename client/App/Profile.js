@@ -1,5 +1,6 @@
 import React from "react";
-import { View, Text, StyleSheet, Button } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
+import { Button, Icon } from 'react-native-elements';
 
 import { AuthContext } from "./context";
 import { Loading } from './Loading';
@@ -25,7 +26,14 @@ export const Profile = ({ navigation }) => {
 	return (
 		<ScreenContainer>
 			<Text>Profile Screen</Text>
-			<Button title="Sign Out" color="red" onPress={() => signOut()} />
+			<Button
+				title=" Sign Out"
+				color="red"
+				onPress={() => signOut()}
+				icon={ <Icon name='sign-out' type='font-awesome' size={24} color= 'white' /> }
+				buttonStyle={{ backgroundColor: "red" }}
+				style={{margin: 20}}
+			/>
 		</ScreenContainer>
 	);
 };
