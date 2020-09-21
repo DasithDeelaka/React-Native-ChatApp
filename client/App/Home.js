@@ -23,18 +23,6 @@ export const Home = ({ navigation }) => {
 	return (
 		<ScreenContainer>
 			<Text>Home Screen</Text>
-			{/* <Button
-				title="React Native by Example"
-				onPress={() =>
-					navigation.push("Details", { name: "React Native by Example " })
-				}
-			/>
-			<Button
-				title="React Native School"
-				onPress={() =>
-					navigation.push("Details", { name: "React Native School" })
-				}
-			/> */}
 		</ScreenContainer>
 	);
 };

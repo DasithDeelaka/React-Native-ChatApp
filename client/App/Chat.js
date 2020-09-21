@@ -23,16 +23,6 @@ export const Chat = ({ navigation }) => {
 	return(
 		<ScreenContainer>
 			<Text>Chat Screen</Text>
-			{/* <Button title="Search" onPress={() => navigation.push("Search")} />
-			<Button
-				title="React Native School"
-				onPress={() => {
-					navigation.navigate("Home", {
-					screen: "Details",
-					params: { name: "React Native School" }
-					});
-				}}
-			/> */}
 		</ScreenContainer>
 	);
 };

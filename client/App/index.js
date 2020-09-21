@@ -12,9 +12,6 @@ import { Chat } from './Chat';
 import { Profile } from './Profile';
 import { SignIn } from './SignIn';
 import { CustomDrawerContent } from './CustomDrawerContent';
-// import { CreateAccount } from './CreateAccount';
-// import { Details } from './Details';
-// import { Search } from './Search';
 
 // Stack Navigation from SignIn screen
 const AuthStack = createStackNavigator();
@@ -25,11 +22,6 @@ const AuthStackScreen = () => (
 			component={SignIn}
 			options={{ title: "Sign In" }}
 		/>
-		{/* <AuthStack.Screen
-			name="CreateAccount"
-			component={CreateAccount}
-			options={{ title: "Create Account" }}
-		/> */}
 	</AuthStack.Navigator>
 );
 
@@ -50,13 +42,6 @@ const HomeStackScreen = ({ navigation }) => (
 				/>
             ) }}
 		/>
-		{/* <HomeStack.Screen
-			name="Details"
-			component={Details}
-			options={({ route }) => ({
-				title: route.params.name
-			})}
-		/> */}
 	</HomeStack.Navigator>
 );
 
@@ -76,7 +61,6 @@ const ChatStackScreen = ({ navigation }) => (
 				/>
             ) }}
 		/>
-		{/* <SearchStack.Screen name="Search" component={Search} /> */}
 	</ChatStack.Navigator>
 );
 
@@ -183,10 +167,6 @@ export default () => {
 	const authContext = React.useMemo(() => {
 		return {
 		signIn: () => {
-			setIsLoading(false);
-			setUserToken("asdf");
-		},
-		signUp: () => {
 			setIsLoading(false);
 			setUserToken("asdf");
 		},

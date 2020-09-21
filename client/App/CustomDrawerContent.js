@@ -18,7 +18,6 @@ export function CustomDrawerContent(props) {
                 </View>
             </View>
 			<DrawerItemList {...props} />
-            {/* <Button title="Sign Out" color="red" onPress={() => signOut()} /> */}
             <Button
 				title=" Sign Out"
 				color="red"
