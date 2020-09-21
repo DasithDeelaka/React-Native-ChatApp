@@ -66,8 +66,11 @@ export function SignIn ({ navigation }) {
 	return (
 		<ScreenContainer>
 			<ScrollView>
-				<View style={styles.container}>
+				<View style={styles.logoView}>
 					<Image style={styles.stretch} source={require('../assets/splash.png')} />
+					<Text style={styles.text}>Welcome {username}</Text>
+				</View>
+				<View style={styles.container}>
 					<Input
 						placeholder="Username"
 						leftIcon={{ type: 'font-awesome', name: 'user-o' }}
@@ -119,6 +122,11 @@ const styles = StyleSheet.create({
 		justifyContent: "center",
 		margin: 20
 	},
+	logoView: {
+		flex: 1,
+		justifyContent: "center",
+		alignItems: "center"
+	},
     formInput: {
     },
     formCheckbox: {
@@ -134,5 +142,11 @@ const styles = StyleSheet.create({
 	stretch: {
 		width: 300,
 		height: 100
+	},
+	text: {
+		flex: 1,
+		color: '#2979FF',
+		fontSize: 25,
+		fontWeight: 'bold'
 	}
 });
