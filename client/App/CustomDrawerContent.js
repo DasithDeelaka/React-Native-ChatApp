@@ -14,7 +14,7 @@ export function CustomDrawerContent(props) {
                     <Image source={require('../assets/splash.png')} style={styles.drawerImage} />
                 </View>
                 <View style={{flex: 2}}>
-                    <Text style={styles.drawerHeaderText}>ThyroidApp</Text>
+                    <Text style={styles.drawerHeaderText}>ChatApp</Text>
                 </View>
             </View>
 			<DrawerItemList {...props} />

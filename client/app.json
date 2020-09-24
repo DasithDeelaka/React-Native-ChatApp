@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "ThyroidApp",
-    "slug": "mobile-application-for-cancer-unit-of-badulla-Hospital",
+    "name": "ChatApp",
+    "slug": "react-native-realtime-chat-application",
     "privacy": "public",
     "sdkVersion": "36.0.0",
     "platforms": [
