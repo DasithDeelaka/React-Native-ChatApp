@@ -1,14 +1,11 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { Icon } from 'react-native-elements';
 
 import { AuthContext } from "./context";
 import { Splash } from "./Splash";
-import { Home } from './Home';
-import { Chat } from './Chat';
 import { Profile } from './Profile';
 import { SignIn } from './SignIn';
 import { CustomDrawerContent } from './CustomDrawerContent';
@@ -23,45 +20,6 @@ const AuthStackScreen = () => (
 			options={{ title: "Sign In" }}
 		/>
 	</AuthStack.Navigator>
-);
-
-// Stack Navigation from Home screen
-const HomeStack = createStackNavigator();
-const HomeStackScreen = ({ navigation }) => (
-	<HomeStack.Navigator>
-		<HomeStack.Screen
-			name="Home"
-			component={Home}
-			options={{ headerLeft: () => (
-				<Icon
-					name="menu"
-					size={24}
-					color= 'grey'
-					onPress={ () => navigation.toggleDrawer() }
-					style={{ marginLeft: 15 }}
-				/>
-            ) }}
-		/>
-	</HomeStack.Navigator>
-);
-
-// Stack Navigation from Chat screen
-const ChatStack = createStackNavigator();
-const ChatStackScreen = ({ navigation }) => (
-	<ChatStack.Navigator>
-		<ChatStack.Screen name="Chat"
-			component={Chat}
-			options={{ headerLeft: () => (
-				<Icon
-					name="menu"
-					size={24}
-					color= 'grey'
-					onPress={ () => navigation.toggleDrawer() }
-					style={{ marginLeft: 15 }}
-				/>
-            ) }}
-		/>
-	</ChatStack.Navigator>
 );
 
 // Stack Navigation from Profile screen
@@ -83,45 +41,10 @@ const ProfileStackScreen = ({ navigation }) => (
 	</ProfileStack.Navigator>
 );
 
-// Tab Navigation for Home & Chat screens
-const Tabs = createBottomTabNavigator();
-const TabsScreen = () => (
-	<Tabs.Navigator initialRouteName="Home"
-		screenOptions={({ route }) => ({
-			tabBarIcon: ({ focused, color, size }) => {
-				let iconName;
-				if (route.name === 'Home') {
-					iconName = focused ? 'home' : 'home';
-				} else if (route.name === 'Chat') {
-					iconName = focused ? 'comments' : 'comments';
-				}
-				return <Icon name={iconName} size={size} color={color} type='font-awesome' />;
-			}
-		})}
-		tabBarOptions={{
-			activeTintColor: '#2979FF',
-			inactiveTintColor: 'gray',
-		}}
-	>
-		<Tabs.Screen name="Home" component={HomeStackScreen} />
-		<Tabs.Screen name="Chat" component={ChatStackScreen} />
-	</Tabs.Navigator>
-);
-
 // Drawer Navigation bar
 const Drawer = createDrawerNavigator();
 const DrawerScreen = () => (
-	<Drawer.Navigator initialRouteName="Home" drawerContent={props => <CustomDrawerContent {...props} />}>
-		<Drawer.Screen name="Home"
-			component={TabsScreen}
-			options={ () => ({
-				drawerIcon: ({ focused, color, size }) => {
-					let iconName;
-					iconName = focused ? 'home' : 'home';
-					return <Icon name={iconName} size={size} color={color} type='font-awesome' />;
-				}
-			})}
-		/>
+	<Drawer.Navigator initialRouteName="Profile" drawerContent={props => <CustomDrawerContent {...props} />}>
 		<Drawer.Screen name="Profile"
 			component={ProfileStackScreen}
 			options={ () => ({
