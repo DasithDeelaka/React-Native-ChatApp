@@ -6,7 +6,7 @@ import { Icon } from 'react-native-elements';
 
 import { AuthContext } from "./context";
 import { Splash } from "./Splash";
-import { Profile } from './Profile';
+import { Chat } from './Chat';
 import { SignIn } from './SignIn';
 import { CustomDrawerContent } from './CustomDrawerContent';
 
@@ -22,12 +22,12 @@ const AuthStackScreen = () => (
 	</AuthStack.Navigator>
 );
 
-// Stack Navigation from Profile screen
-const ProfileStack = createStackNavigator();
-const ProfileStackScreen = ({ navigation }) => (
-	<ProfileStack.Navigator>
-		<ProfileStack.Screen name="Profile"
-			component={Profile}
+// Stack Navigation from Chat screen
+const ChatStack = createStackNavigator();
+const ChatStackScreen = ({ navigation }) => (
+	<ChatStack.Navigator>
+		<ChatStack.Screen name="Chat"
+			component={Chat}
 			options={{ headerLeft: () => (
 				<Icon
 					name="menu"
@@ -38,19 +38,19 @@ const ProfileStackScreen = ({ navigation }) => (
 				/>
             ) }}
 		/>
-	</ProfileStack.Navigator>
+	</ChatStack.Navigator>
 );
 
 // Drawer Navigation bar
 const Drawer = createDrawerNavigator();
 const DrawerScreen = () => (
-	<Drawer.Navigator initialRouteName="Profile" drawerContent={props => <CustomDrawerContent {...props} />}>
-		<Drawer.Screen name="Profile"
-			component={ProfileStackScreen}
+	<Drawer.Navigator initialRouteName="Chat" drawerContent={props => <CustomDrawerContent {...props} />}>
+		<Drawer.Screen name="Chat"
+			component={ChatStackScreen}
 			options={ () => ({
 				drawerIcon: ({ focused, color, size }) => {
 					let iconName;
-					iconName = focused ? 'user' : 'user';
+					iconName = focused ? 'comments' : 'comments';
 					return <Icon name={iconName} size={size} color={color} type='font-awesome' />;
 				}
 			})}

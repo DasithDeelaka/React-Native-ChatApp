@@ -9,7 +9,7 @@ const ScreenContainer = ({ children }) => (
   	<View style={styles.container}>{children}</View>
 );
 
-export const Profile = ({ navigation }) => {
+export const Chat = ({ navigation }) => {
 	const { signOut } = React.useContext(AuthContext);
 	const [isLoading, setIsLoading] = React.useState(true);
 
@@ -25,7 +25,7 @@ export const Profile = ({ navigation }) => {
 
 	return (
 		<ScreenContainer>
-			<Text>Profile Screen</Text>
+			<Text>Chat Screen</Text>
 			<Button
 				title=" Sign Out"
 				color="red"
