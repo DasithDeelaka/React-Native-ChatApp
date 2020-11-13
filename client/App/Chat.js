@@ -1,18 +1,17 @@
 import React, { useContext, useState, useEffect} from "react";
-import { View, Text, StyleSheet, Alert } from "react-native";
-import { Button, Icon } from 'react-native-elements';
+import { View, Text, StyleSheet, Alert, TextInput, KeyboardAvoidingView, Platform } from "react-native";
+import { Button } from 'react-native-elements';
 
 import { AuthContext } from "./context";
 import { Loading } from './Loading';
 
-const ScreenContainer = ({ children }) => (
-  	<View style={styles.container}>{children}</View>
-);
-
 export const Chat = ({ navigation }) => {
 
 	const { signOut, name, room } = useContext(AuthContext);
+
+	const [value, onChangeText] = useState();
 	const [isLoading, setIsLoading] = useState(true);
+	const [enableShift, setEnableShift] = useState(false);
 
 	const confirmSignOut = () => {
         Alert.alert(
@@ -45,19 +44,31 @@ export const Chat = ({ navigation }) => {
 	}
 
 	return (
-		<ScreenContainer>
-			<Text>Chat Screen</Text>
-			<Text>{name}</Text>
-			<Text>{room}</Text>
-			<Button
-				title=" Sign Out"
-				color="red"
-				onPress={() => confirmSignOut()}
-				icon={ <Icon name='sign-out' type='font-awesome' size={24} color= 'white' /> }
-				buttonStyle={{ backgroundColor: "red" }}
-				style={{margin: 20}}
-			/>
-		</ScreenContainer>
+		<View>
+			<KeyboardAvoidingView behavior={Platform.OS == "ios" ? "position" : "height"} keyboardVerticalOffset={62} enabled={enableShift}>
+			<View style={{ padding:5, height: "92%" }}>
+				<Text>{name}</Text>
+				<Text>{room}</Text>
+				<Text>{value}</Text>
+			</View>
+			<View style={styles.buttonView}>
+				<TextInput
+					placeholder="Type message here . . ."
+					style={{ height: 40, width: "85%", borderColor: 'gray', borderWidth: 1 }}
+					onChangeText={text => onChangeText(text)}
+					onFocus={() => {setEnableShift(true)}}
+					value={value}
+				/>
+				<Button
+					title="Send"
+					color="red"
+					style={{ height: 40, width: "100%" }}
+					onPress={() => confirmSignOut()}
+					buttonStyle={{ backgroundColor: "#2979FF" }}
+				/>
+			</View>
+			</KeyboardAvoidingView>
+		</View>
 	);
 };
 
@@ -66,5 +77,9 @@ const styles = StyleSheet.create({
 		flex: 1,
 		justifyContent: "center",
 		alignItems: "center"
+	},
+	buttonView:{
+		flexDirection:"row",
+		padding:5
 	}
 });
