@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createDrawerNavigator } from "@react-navigation/drawer";
@@ -60,9 +60,9 @@ const DrawerScreen = () => (
 
 // Render Authentication & Drawer at the initial app deployment
 const RootStack = createStackNavigator();
-const RootStackScreen = ({ userToken }) => (
+const RootStackScreen = ({ name, room }) => (
 	<RootStack.Navigator headerMode="none">
-		{userToken ? (
+		{name && room ? (
 		<RootStack.Screen
 			name="App"
 			component={DrawerScreen}
@@ -83,25 +83,31 @@ const RootStackScreen = ({ userToken }) => (
 );
 
 export default () => {
-	const [isLoading, setIsLoading] = React.useState(true);
-	const [userToken, setUserToken] = React.useState(null);
+
+	const [isLoading, setIsLoading] = useState(true);
+	const [name, setName] = useState();
+	const [room, setRoom] = useState();
 
 	// Authentication process
-	const authContext = React.useMemo(() => {
+	const authContext = useMemo(() => {
 		return {
-		signIn: () => {
-			setIsLoading(false);
-			setUserToken("asdf");
-		},
-		signOut: () => {
-			setIsLoading(false);
-			setUserToken(null);
-		}
+			signIn: (name,room) => {
+				setIsLoading(false);
+				setName(name);
+				setRoom(room);
+			},
+			signOut: () => {
+				setIsLoading(false);
+				setName();
+				setRoom();
+			},
+			name,
+			room
 		};
-	}, []);
+	}, [name, room]);
 
 	// Splash screen
-	React.useEffect(() => {
+	useEffect(() => {
 		setTimeout(() => {
 		setIsLoading(false);
 		}, 1500);
@@ -115,7 +121,7 @@ export default () => {
 	return (
 		<AuthContext.Provider value={authContext}>
 			<NavigationContainer>
-				<RootStackScreen userToken={userToken} />
+				<RootStackScreen name={name} room={room} />
 			</NavigationContainer>
 		</AuthContext.Provider>
 	);

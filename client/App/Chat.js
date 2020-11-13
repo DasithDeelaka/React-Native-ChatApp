@@ -1,5 +1,5 @@
-import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import React, { useContext, useState, useEffect} from "react";
+import { View, Text, StyleSheet, Alert } from "react-native";
 import { Button, Icon } from 'react-native-elements';
 
 import { AuthContext } from "./context";
@@ -10,10 +10,31 @@ const ScreenContainer = ({ children }) => (
 );
 
 export const Chat = ({ navigation }) => {
-	const { signOut } = React.useContext(AuthContext);
-	const [isLoading, setIsLoading] = React.useState(true);
 
-	React.useEffect(() => {
+	const { signOut, name, room } = useContext(AuthContext);
+	const [isLoading, setIsLoading] = useState(true);
+
+	const confirmSignOut = () => {
+        Alert.alert(
+            'Confirm Logout',
+			'Are you sure you want to logout?',
+            [
+                {
+                    text: 'Cancel',
+                    style: 'cancel'
+                },
+                {
+                    text: 'OK',
+                    onPress: () => {
+                        signOut();
+                    }
+                }
+            ],
+            { cancelable: false }
+        );
+    }
+
+	useEffect(() => {
 		setTimeout(() => {
 		setIsLoading(false);
 		}, 1500);
@@ -26,10 +47,12 @@ export const Chat = ({ navigation }) => {
 	return (
 		<ScreenContainer>
 			<Text>Chat Screen</Text>
+			<Text>{name}</Text>
+			<Text>{room}</Text>
 			<Button
 				title=" Sign Out"
 				color="red"
-				onPress={() => signOut()}
+				onPress={() => confirmSignOut()}
 				icon={ <Icon name='sign-out' type='font-awesome' size={24} color= 'white' /> }
 				buttonStyle={{ backgroundColor: "red" }}
 				style={{margin: 20}}

@@ -1,12 +1,33 @@
 import React from "react";
-import { View, Text, Image, StyleSheet } from 'react-native';
+import { View, Text, Image, StyleSheet, Alert } from 'react-native';
 import { Button, Icon } from 'react-native-elements';
 import { DrawerContentScrollView, DrawerItemList } from "@react-navigation/drawer";
 
 import { AuthContext } from "./context";
 
 export function CustomDrawerContent(props) {
+
     const { signOut } = React.useContext(AuthContext);
+
+    const confirmSignOut = () => {
+        Alert.alert(
+            'Confirm Logout',
+			'Are you sure you want to logout?',
+            [
+                {
+                    text: 'Cancel',
+                    style: 'cancel'
+                },
+                {
+                    text: 'OK',
+                    onPress: () => {
+                        signOut();
+                    }
+                }
+            ],
+            { cancelable: false }
+        );
+    }
 	return (
 		<DrawerContentScrollView {...props}>
 			<View style={styles.drawerHeader}>
@@ -21,7 +42,7 @@ export function CustomDrawerContent(props) {
             <Button
 				title=" Sign Out"
 				color="red"
-				onPress={() => signOut()}
+				onPress={() => confirmSignOut()}
 				icon={ <Icon name='sign-out' type='font-awesome' size={24} color= 'white' /> }
                 buttonStyle={{ backgroundColor: "red" }}
                 style={styles.signOutBtn}

@@ -1,7 +1,6 @@
-import React, { useState } from "react";
-import { View, StyleSheet, ScrollView, Image, Text, AsyncStorage } from "react-native";
-import { Icon, Input, CheckBox, Button } from 'react-native-elements';
-import * as SecureStore from 'expo-secure-store';
+import React, { useState, useContext, useEffect } from "react";
+import { View, StyleSheet, ScrollView, Image, Text } from "react-native";
+import { Icon, Input, Button } from 'react-native-elements';
 
 import { AuthContext } from "./context";
 import { Loading } from './Loading';
@@ -11,49 +10,21 @@ const ScreenContainer = ({ children }) => (
 );
 
 export function SignIn ({ navigation }) {
-	const { signIn } = React.useContext(AuthContext);
+
+	const { signIn } = useContext(AuthContext);
 	const [isLoading, setIsLoading] = useState(true);
-	const [username, setUsername] = useState();
-	const [password, setPassword] = useState();
-	const [remember, setRemember] = useState(false);
+	const [name, setName] = useState();
+	const [room, setRoom] = useState();
 
-	const save = async () => {
-		try {
-			await SecureStore.setItemAsync("username", username);
-			await SecureStore.setItemAsync("password", password);
-		} catch (err) {
-			alert (err);
+	const validate = () => {
+		if(!name || !room) {
+			alert("Name or Room cannot be empty!");
+		} else {
+			signIn(name,room);
 		}
 	}
 
-	const load = async () => {
-		try {
-			let username = await SecureStore.getItemAsync("username");
-			let password = await SecureStore.getItemAsync("password");
-
-			if (username !== null && password !== null) {
-				setUsername(username);
-				setPassword(password);
-			}
-		} catch (err) {
-			alert (err);
-		}
-	}
-
-	// const remove = async () => {
-	// 	try {
-	// 		await SecureStore.deleteItemAsync("username");
-	// 		await SecureStore.deleteItemAsync("password");
-	// 	} catch (err) {
-	// 		alert (err);
-	// 	} finally {
-	// 		setUsername("");
-	// 		setPassword("");
-	// 	}
-	// }
-
-	React.useEffect(() => {
-		load();
+	useEffect(() => {
 		setTimeout(() => {
 		setIsLoading(false);
 		}, 1500);
@@ -68,44 +39,27 @@ export function SignIn ({ navigation }) {
 			<ScrollView>
 				<View style={styles.logoView}>
 					<Image style={styles.stretch} source={require('../assets/splash.png')} />
-					<Text style={styles.text}>Welcome {username}</Text>
+					<Text style={styles.text}>Welcome {name}</Text>
 				</View>
 				<View style={styles.container}>
 					<Input
-						placeholder="Username"
+						placeholder="Name"
 						leftIcon={{ type: 'font-awesome', name: 'user-o' }}
-						onChangeText={(username) => setUsername(username)}
-						value={username}
+						onChangeText={(name) => setName(name)}
+						value={name}
 						containerStyle={styles.formInput}
 					/>
 					<Input
-						placeholder="Password"
-						secureTextEntry={true}
-						leftIcon={{ type: 'font-awesome', name: 'key' }}
-						onChangeText={(password) => setPassword(password)}
-						value={password}
+						placeholder="Room"
+						leftIcon={{ type: 'font-awesome', name: 'comments-o' }}
+						onChangeText={(room) => setRoom(room)}
+						value={room}
 						containerStyle={styles.formInput}
 					/>
-					<CheckBox title="Remember Me"
-						center
-						checked={remember}
-						onPress={() => {
-							setRemember(!remember);
-							if(remember === false) {
-								save();
-							}
-						}}
-						containerStyle={styles.formCheckbox}
-					/>
 					<View style={styles.formButton}>
-						{/* <Button
-							title=" Remove Me"
-							onPress={() => remove()}
-							buttonStyle={{ backgroundColor: "red" }}
-						/> */}
 						<Button
 							title=" Sign In"
-							onPress={() => signIn()}
+							onPress={() => validate()}
 							icon={ <Icon name='sign-in' type='font-awesome' size={24} color= 'white' />}
 							buttonStyle={{ backgroundColor: "#2979FF" }}
 						/>
@@ -128,10 +82,6 @@ const styles = StyleSheet.create({
 		alignItems: "center"
 	},
     formInput: {
-    },
-    formCheckbox: {
-        margin: 20,
-        backgroundColor: null
     },
     formButton: {
 		marginBottom: 20,
