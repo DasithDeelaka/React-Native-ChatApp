@@ -1,5 +1,5 @@
-import React, { useContext, useState, useEffect} from "react";
-import { View, Text, StyleSheet, Alert, TextInput, KeyboardAvoidingView, Platform } from "react-native";
+import React, { useContext, useState, useEffect, useRef } from "react";
+import { View, Text, StyleSheet, Alert, TextInput, KeyboardAvoidingView, Platform, ScrollView } from "react-native";
 import { Button } from 'react-native-elements';
 
 import { AuthContext } from "./context";
@@ -9,9 +9,11 @@ export const Chat = ({ navigation }) => {
 
 	const { signOut, name, room } = useContext(AuthContext);
 
-	const [value, onChangeText] = useState();
+	const [message, setMessage] = useState();
 	const [isLoading, setIsLoading] = useState(true);
 	const [enableShift, setEnableShift] = useState(false);
+
+	const scrollViewRef = useRef();
 
 	const confirmSignOut = () => {
         Alert.alert(
@@ -46,27 +48,29 @@ export const Chat = ({ navigation }) => {
 	return (
 		<View>
 			<KeyboardAvoidingView behavior={Platform.OS == "ios" ? "position" : "height"} keyboardVerticalOffset={62} enabled={enableShift}>
-			<View style={{ padding:5, height: "92%" }}>
-				<Text>{name}</Text>
-				<Text>{room}</Text>
-				<Text>{value}</Text>
-			</View>
-			<View style={styles.buttonView}>
-				<TextInput
-					placeholder="Type message here . . ."
-					style={{ height: 40, width: "85%", borderColor: 'gray', borderWidth: 1 }}
-					onChangeText={text => onChangeText(text)}
-					onFocus={() => {setEnableShift(true)}}
-					value={value}
-				/>
-				<Button
-					title="Send"
-					color="red"
-					style={{ height: 40, width: "100%" }}
-					onPress={() => confirmSignOut()}
-					buttonStyle={{ backgroundColor: "#2979FF" }}
-				/>
-			</View>
+				<View style={{ padding:5, height: "92%" }}>
+					<ScrollView ref={scrollViewRef} onContentSizeChange={() => scrollViewRef.current.scrollToEnd({ animated: true })}>
+						<Text>{name}</Text>
+						<Text>{room}</Text>
+						<Text>{message}</Text>
+					</ScrollView>
+				</View>
+				<View style={styles.buttonView}>
+					<TextInput
+						placeholder="Type message here . . ."
+						style={{ height: 40, width: "85%", borderColor: 'gray', borderWidth: 1 }}
+						onChangeText={(text) => setMessage(text)}
+						onFocus={() => {setEnableShift(true)}}
+						value={message}
+					/>
+					<Button
+						title="Send"
+						color="red"
+						style={{ height: 40, width: "100%" }}
+						onPress={() => confirmSignOut()}
+						buttonStyle={{ backgroundColor: "#2979FF" }}
+					/>
+				</View>
 			</KeyboardAvoidingView>
 		</View>
 	);
