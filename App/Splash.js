@@ -1,15 +1,11 @@
 import React from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
 
-const ScreenContainer = ({ children }) => (
-  	<View style={styles.container}>{children}</View>
-);
-
 export const Splash = () => (
-	<ScreenContainer>
-		<Text style={styles.loadingText} >ChatApp</Text>
+	<View style={styles.container}>
 		<Image style={styles.stretch} source={require('../assets/splash.png')} />
-	</ScreenContainer>
+		<Text style={styles.loadingText}>ChatApp</Text>
+	</View>
 );
 
 const styles = StyleSheet.create({
@@ -21,10 +17,12 @@ const styles = StyleSheet.create({
 	loadingText: {
 		color: '#2979FF',
 		fontSize: 30,
-		fontWeight: 'bold'
+		fontWeight: 'bold',
+		marginTop:-110
 	},
 	stretch: {
 		width: 300,
-		height: 300
+		height: 300,
+		marginTop:-100
 	}
 });
