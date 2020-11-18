@@ -14,13 +14,12 @@ export function SignIn ({ navigation }) {
 	const { signIn } = useContext(AuthContext);
 	const [isLoading, setIsLoading] = useState(true);
 	const [name, setName] = useState();
-	const [room, setRoom] = useState();
 
 	const validate = () => {
-		if(!name || !room) {
-			alert("Name or Room cannot be empty!");
+		if(!name) {
+			alert("Name cannot be empty!");
 		} else {
-			signIn(name,room);
+			signIn(name);
 		}
 	}
 
@@ -49,13 +48,6 @@ export function SignIn ({ navigation }) {
 						value={name}
 						containerStyle={styles.formInput}
 					/>
-					<Input
-						placeholder="Room"
-						leftIcon={{ type: 'font-awesome', name: 'comments-o' }}
-						onChangeText={(room) => setRoom(room)}
-						value={room}
-						containerStyle={styles.formInput}
-					/>
 					<View style={styles.formButton}>
 						<Button
 							title=" Sign In"
@@ -74,7 +66,9 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 		justifyContent: "center",
-		margin: 20
+		marginLeft: 10,
+		marginRight: 10,
+		marginTop:40
 	},
 	logoView: {
 		flex: 1,

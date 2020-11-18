@@ -60,9 +60,9 @@ const DrawerScreen = () => (
 
 // Render Authentication & Drawer at the initial app deployment
 const RootStack = createStackNavigator();
-const RootStackScreen = ({ name, room }) => (
+const RootStackScreen = ({ name }) => (
 	<RootStack.Navigator headerMode="none">
-		{name && room ? (
+		{name ? (
 		<RootStack.Screen
 			name="App"
 			component={DrawerScreen}
@@ -86,25 +86,21 @@ export default () => {
 
 	const [isLoading, setIsLoading] = useState(true);
 	const [name, setName] = useState();
-	const [room, setRoom] = useState();
 
 	// Authentication process
 	const authContext = useMemo(() => {
 		return {
-			signIn: (name,room) => {
+			signIn: (name) => {
 				setIsLoading(false);
 				setName(name);
-				setRoom(room);
 			},
 			signOut: () => {
 				setIsLoading(false);
 				setName();
-				setRoom();
 			},
-			name,
-			room
+			name
 		};
-	}, [name, room]);
+	}, [name]);
 
 	// Splash screen
 	useEffect(() => {
@@ -121,7 +117,7 @@ export default () => {
 	return (
 		<AuthContext.Provider value={authContext}>
 			<NavigationContainer>
-				<RootStackScreen name={name} room={room} />
+				<RootStackScreen name={name} />
 			</NavigationContainer>
 		</AuthContext.Provider>
 	);
