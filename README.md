@@ -1,12 +1,12 @@
 # React-Native-ChatApp
 
-Realtime chat application created with firebase realtime database connectivity and GiftedChat library.
+Realtime chat application created with react-native, firebase and react-native-gifted-chat
 
 # Technologies
 
-React Native
-Firebase
-react-native-gifted-chat
+- React Native
+- Firebase
+- react-native-gifted-chat
 
 # How to install
 
