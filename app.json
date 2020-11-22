@@ -24,7 +24,15 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
-    }
+      "supportsTablet": true,
+      "bundleIdentifier": "com.deelaka.chatapp",
+      "buildNumber": "1.0.0"
+    },
+    "android": {
+      "package": "com.deelaka.chatapp",
+      "versionCode": 1
+    },
+    "description": "",
+    "githubUrl": "https://github.com/DasithDeelaka/React-Native-ChatApp.git"
   }
 }
